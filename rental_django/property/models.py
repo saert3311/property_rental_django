@@ -29,7 +29,7 @@ class Property(models.Model):
     
 class Request(models.Model):
     origin_property = models.ForeignKey(Property, on_delete=models.CASCADE)
-    user = models.ForeignKey('users.UserData', on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     date = models.DateTimeField(auto_now_add=True)
     message = models.TextField()
 
