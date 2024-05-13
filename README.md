@@ -12,6 +12,8 @@ $ source onlyflans/bin/activate #sistemas UNIX
 $ .\venv\Scripts\activate #sistemas Windows
 $ pip install -r requirements.txt
 $ cd rental_django
+#genera el .env con los datos para la conexion de la base de datos
+$ python set_db.py
 #importamos los modelos iniciales de regiones y comunas
 $ python manage.py loaddata regiones
 $ python manage.py loaddata provincias
