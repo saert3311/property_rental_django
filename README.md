@@ -25,3 +25,9 @@ $ python manage.py runserver
 ## Avances 
 
 * Creacion de proyecto y configuracion de ambiente de desarrollo, con Modelos Inciales, de comunas y regiones (Hito 1)
+
+```bash
+#Corremos los tests iniciales para comprobar el estado de los modelos
+$ python manage.py test
+
+```
