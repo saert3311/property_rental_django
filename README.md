@@ -11,12 +11,17 @@ $ python -m venv onlyflans
 $ source onlyflans/bin/activate #sistemas UNIX
 $ .\venv\Scripts\activate #sistemas Windows
 $ pip install -r requirements.txt
-
+$ cd rental_django
+#importamos los modelos iniciales de regiones y comunas
+$ python manage.py loaddata regiones
+$ python manage.py loaddata provincias
+$ python manage.py loaddata comunas
 # Ejecutamos el proyecto.
-$ cd rental_django/manage.py runserver
+$ python manage.py runserver
+
 ```
 
 
 ## Avances 
 
-* Creacion de proyecto y configuracion de ambiente de desarrollo, con Modelos Inciales (Hito 1)
+* Creacion de proyecto y configuracion de ambiente de desarrollo, con Modelos Inciales, de comunas y regiones (Hito 1)
