@@ -1,0 +1,362 @@
+[
+    {
+      "model": "property.property",
+      "pk": 1,
+      "fields": {
+        "name": "Casa en la Playa",
+        "description": "Hermosa casa con vista al mar.",
+        "m2_building": 200,
+        "m2_total": 500,
+        "n_parking": 2,
+        "n_bedrooms": 4,
+        "n_bathrooms": 3,
+        "address": "Avenida del Mar 123",
+        "comuna": 1,
+        "ptype": 0,
+        "price": 1000000,
+        "landlord": 1
+      }
+    },
+    {
+      "model": "property.property",
+      "pk": 2,
+      "fields": {
+        "name": "Departamento en el Centro",
+        "description": "Moderno departamento en el corazón de la ciudad.",
+        "m2_building": 80,
+        "m2_total": 100,
+        "n_parking": 1,
+        "n_bedrooms": 2,
+        "n_bathrooms": 2,
+        "address": "Calle Principal 456",
+        "comuna": 233,
+        "ptype": 1,
+        "price": 500000,
+        "landlord": 2
+      }
+    },
+    {
+      "model": "property.property",
+      "pk": 3,
+      "fields": {
+        "name": "Parcela en la Montaña",
+        "description": "Amplia parcela con vistas panorámicas.",
+        "m2_building": 150,
+        "m2_total": 10000,
+        "n_parking": 3,
+        "n_bedrooms": 3,
+        "n_bathrooms": 2,
+        "address": "Camino Rural 789",
+        "comuna": 35,
+        "ptype": 2,
+        "price": 750000,
+        "landlord": 1
+      }
+    },
+    {
+      "model": "property.property",
+      "pk": 4,
+      "fields": {
+        "name": "Local Comercial en Avenida Principal",
+        "description": "Local con gran afluencia de público.",
+        "m2_building": 100,
+        "m2_total": 120,
+        "n_parking": 0,
+        "n_bedrooms": 0,
+        "n_bathrooms": 1,
+        "address": "Avenida Principal 1010",
+        "comuna": 4,
+        "ptype": 3,
+        "price": 400000,
+        "landlord": 3
+      }
+    },
+    {
+      "model": "property.property",
+      "pk": 5,
+      "fields": {
+        "name": "Casa en Condominio",
+        "description": "Casa familiar en condominio cerrado.",
+        "m2_building": 180,
+        "m2_total": 300,
+        "n_parking": 2,
+        "n_bedrooms": 3,
+        "n_bathrooms": 2,
+        "address": "Pasaje Tranquilo 1212",
+        "comuna": 1,
+        "ptype": 0,
+        "price": 900000,
+        "landlord": 2
+      }
+    },
+    {
+      "model": "property.property",
+      "pk": 6,
+      "fields": {
+        "name": "Departamento en Edificio Moderno",
+        "description": "Departamento con excelentes terminaciones.",
+        "m2_building": 70,
+        "m2_total": 80,
+        "n_parking": 1,
+        "n_bedrooms": 1,
+        "n_bathrooms": 1,
+        "address": "Calle Nueva 1313",
+        "comuna": 233,
+        "ptype": 1,
+        "price": 450000,
+        "landlord": 1
+      }
+    },
+    {
+      "model": "property.property",
+      "pk": 7,
+      "fields": {
+        "name": "Parcela con Arboles Frutales",
+        "description": "Parcela con variedad de arboles frutales.",
+        "m2_building": 120,
+        "m2_total": 5000,
+        "n_parking": 2,
+        "n_bedrooms": 2,
+        "n_bathrooms": 1,
+        "address": "Camino Rural 1414",
+        "comuna": 35,
+        "ptype": 2,
+        "price": 600000,
+        "landlord": 3
+      }
+    },
+    {
+      "model": "property.property",
+      "pk": 8,
+      "fields": {
+        "name": "Local Comercial en Galería",
+        "description": "Local en galería comercial con alta visibilidad.",
+        "m2_building": 50,
+        "m2_total": 60,
+        "n_parking": 0,
+        "n_bedrooms": 0,
+        "n_bathrooms": 1,
+        "address": "Galería Comercial 1515",
+        "comuna": 4,
+        "ptype": 3,
+        "price": 350000,
+        "landlord": 2
+      }
+    },
+    {
+      "model": "property.property",
+      "pk": 9,
+      "fields": {
+        "name": "Casa en Barrio Residencial",
+        "description": "Casa en barrio tranquilo y familiar.",
+        "m2_building": 220,
+        "m2_total": 400,
+        "n_parking": 2,
+        "n_bedrooms": 4,
+        "n_bathrooms": 3,
+        "address": "Calle Residencial 1616",
+        "comuna": 1,
+        "ptype": 0,
+        "price": 1100000,
+        "landlord": 1
+      }
+    },
+    {
+      "model": "property.property",
+      "pk": 10,
+      "fields": {
+        "name": "Departamento en Edificio con Piscina",
+        "description": "Departamento con acceso a piscina y áreas verdes.",
+        "m2_building": 90,
+        "m2_total": 110,
+        "n_parking": 1,
+        "n_bedrooms": 2,
+        "n_bathrooms": 2,
+        "address": "Calle Verde 1717",
+        "comuna": 233,
+        "ptype": 1,
+        "price": 600000,
+        "landlord": 3
+      }
+    },
+    {
+      "model": "property.property",
+      "pk": 11,
+      "fields": {
+        "name": "Parcela con Vista al Lago",
+        "description": "Parcela con hermosa vista al lago.",
+        "m2_building": 160,
+        "m2_total": 7000,
+        "n_parking": 3,
+        "n_bedrooms": 3,
+        "n_bathrooms": 2,
+        "address": "Camino al Lago 1818",
+        "comuna": 35,
+        "ptype": 2,
+        "price": 850000,
+        "landlord": 2
+      }
+    },
+    {
+      "model": "property.property",
+      "pk": 12,
+      "fields": {
+        "name": "Local Comercial en Centro Comercial",
+        "description": "Local en centro comercial con gran afluencia de público.",
+        "m2_building": 70,
+        "m2_total": 80,
+        "n_parking": 0,
+        "n_bedrooms": 0,
+        "n_bathrooms": 1,
+        "address": "Centro Comercial 1919",
+        "comuna": 4,
+        "ptype": 3,
+        "price": 400000,
+        "landlord": 1
+      }
+    },
+    {
+      "model": "property.property",
+      "pk": 13,
+      "fields": {
+        "name": "Casa con Jardín Amplio",
+        "description": "Casa con amplio jardín y terraza.",
+        "m2_building": 240,
+        "m2_total": 500,
+        "n_parking": 2,
+        "n_bedrooms": 4,
+        "n_bathrooms": 3,
+        "address": "Calle del Jardín 2020",
+        "comuna": 1,
+        "ptype": 0,
+        "price": 1200000,
+        "landlord": 3
+      }
+    },
+    {
+      "model": "property.property",
+      "pk": 14,
+      "fields": {
+        "name": "Departamento Amoblado",
+        "description": "Departamento completamente amoblado.",
+        "m2_building": 60,
+        "m2_total": 70,
+        "n_parking": 1,
+        "n_bedrooms": 1,
+        "n_bathrooms": 1,
+        "address": "Calle Amoblada 2121",
+        "comuna": 233,
+        "ptype": 1,
+        "price": 400000,
+        "landlord": 2
+      }
+    },
+    {
+      "model": "property.property",
+      "pk": 15,
+      "fields": {
+        "name": "Parcela con Cabaña",
+        "description": "Parcela con cabaña incluida.",
+        "m2_building": 100,
+        "m2_total": 3000,
+        "n_parking": 2,
+        "n_bedrooms": 2,
+        "n_bathrooms": 1,
+        "address": "Camino Rural 2222",
+        "comuna": 35,
+        "ptype": 2,
+        "price": 550000,
+        "landlord": 1
+      }
+    },
+    {
+      "model": "property.property",
+      "pk": 16,
+      "fields": {
+        "name": "Local Comercial en Esquina",
+        "description": "Local en esquina con gran visibilidad.",
+        "m2_building": 90,
+        "m2_total": 100,
+        "n_parking": 0,
+        "n_bedrooms": 0,
+        "n_bathrooms": 1,
+        "address": "Esquina Comercial 2323",
+        "comuna": 4,
+        "ptype": 3,
+        "price": 450000,
+        "landlord": 3
+      }
+    },
+    {
+      "model": "property.property",
+      "pk": 17,
+      "fields": {
+        "name": "Casa con Piscina Privada",
+        "description": "Casa con piscina privada y áreas verdes.",
+        "m2_building": 260,
+        "m2_total": 600,
+        "n_parking": 2,
+        "n_bedrooms": 5,
+        "n_bathrooms": 4,
+        "address": "Calle Privada 2424",
+        "comuna": 1,
+        "ptype": 0,
+        "price": 1300000,
+        "landlord": 2
+      }
+    },
+    {
+      "model": "property.property",
+      "pk": 18,
+      "fields": {
+        "name": "Departamento con Vista Panorámica",
+        "description": "Departamento con vista panorámica a la ciudad.",
+        "m2_building": 100,
+        "m2_total": 120,
+        "n_parking": 1,
+        "n_bedrooms": 2,
+        "n_bathrooms": 2,
+        "address": "Calle Panorámica 2525",
+        "comuna": 233,
+        "ptype": 1,
+        "price": 650000,
+        "landlord": 1
+      }
+    },
+    {
+      "model": "property.property",
+      "pk": 19,
+      "fields": {
+        "name": "Parcela con Bosque Nativo",
+        "description": "Parcela con bosque nativo y acceso a rio.",
+        "m2_building": 180,
+        "m2_total": 9000,
+        "n_parking": 3,
+        "n_bedrooms": 3,
+        "n_bathrooms": 2,
+        "address": "Camino al Bosque 2626",
+        "comuna": 35,
+        "ptype": 2,
+        "price": 900000,
+        "landlord": 3
+      }
+    },
+    {
+      "model": "property.property",
+      "pk": 20,
+      "fields": {
+        "name": "Local Comercial en Zona Industrial",
+        "description": "Local en zona industrial con fácil acceso.",
+        "m2_building": 120,
+        "m2_total": 150,
+        "n_parking": 0,
+        "n_bedrooms": 0,
+        "n_bathrooms": 1,
+        "address": "Zona Industrial 2727",
+        "comuna": 4,
+        "ptype": 3,
+        "price": 500000,
+        "landlord": 2
+      }
+    }
+  ]
