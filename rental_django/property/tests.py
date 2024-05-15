@@ -2,7 +2,6 @@ from django.test import TestCase
 from property.models import Property, Request, Contract
 from users.models import Comuna, Regiones
 from django.contrib.auth.models import User
-from django.db.models import Count
 # Create your tests here.
 
 # setuptestdata
