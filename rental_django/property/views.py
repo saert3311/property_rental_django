@@ -3,6 +3,6 @@ from django.views.generic import TemplateView
 
 # Create your views here.
 class IndexView(TemplateView):
-    template_name = 'layouts/base.html'
+    template_name = 'index.html'
 
 index_view = IndexView.as_view()
