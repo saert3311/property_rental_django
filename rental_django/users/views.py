@@ -41,7 +41,6 @@ def login_view(request):
             return redirect('property:index')
         else:
             messages.error(request, 'Usuario o contraseña incorrectos')
-            return render(request, 'login.html')
     form = AuthenticationForm()
-    return render(request, 'login.html', {'form': form})     
+    return render(request, 'login.html', {'form': form, 'pagetitle': 'Iniciar sesión'})     
 
