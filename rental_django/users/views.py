@@ -1,11 +1,14 @@
+from django.forms import ValidationError
 from django.http import JsonResponse
 from django.contrib.auth import login
 from django.contrib import messages
-from .models import Comuna
+from .models import Comuna, UserData
+from django.contrib.auth.models import User
 from django.views.generic import TemplateView
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import AuthenticationForm
 from django.shortcuts import render, redirect
+from .forms import RegisterForm
 
 # Create your views here.
 
@@ -44,3 +47,19 @@ def login_view(request):
     form = AuthenticationForm()
     return render(request, 'login.html', {'form': form, 'pagetitle': 'Iniciar sesión'})     
 
+def register_view(request):
+    if request.method == 'POST':
+        form = RegisterForm(request.POST)
+        try:
+            if form.is_valid():
+                data = form.cleaned_data
+                user = User.objects.create_user(username=data['username'], email=data['email'], password=data['password'], first_name=data['f_name'], last_name=data['l_name'])
+                UserData.objects.create(user=user, rut=data['rut'], address=data['address'], phone=data['phone'])
+                messages.success(request, 'Usuario creado exitosamente.')
+                return redirect('users:index')
+        except ValidationError as e:
+            for message in e.messages:
+                messages.error(request, message)
+            return redirect('users:register')
+    form = RegisterForm()
+    return render(request, 'register.html', {'form':form, 'pagetitle':'Registro'})
