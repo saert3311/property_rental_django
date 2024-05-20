@@ -1,5 +1,6 @@
 from django import forms
 from .models import UserData
+from django.contrib.auth.models import User
 
 class RegisterForm(forms.Form):
     f_name = forms.CharField(max_length=50)
@@ -28,3 +29,11 @@ class RegisterForm(forms.Form):
         if password != password_repeat:
             raise forms.ValidationError('Las contraseñas no coinciden.')
         return password
+    
+class UserUpdateForm(forms.ModelForm):
+    address = forms.CharField(max_length=200)
+    phone = forms.CharField(max_length=12)
+
+    class Meta:
+        model = User
+        fields = ['email', 'address', 'phone', 'first_name', 'last_name']

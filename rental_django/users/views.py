@@ -1,14 +1,14 @@
+from django.shortcuts import get_object_or_404
 from django.forms import ValidationError
 from django.http import JsonResponse
-from django.contrib.auth import login
 from django.contrib import messages
 from .models import Comuna, UserData
 from django.contrib.auth.models import User
 from django.views.generic import TemplateView
-from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
+from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm
 from django.shortcuts import render, redirect
-from .forms import RegisterForm
+from .forms import RegisterForm, UserUpdateForm
 from django.contrib.auth.decorators import login_required
 # Create your views here.
 
@@ -81,4 +81,40 @@ def logout_view(request):
 
 @login_required
 def dashboard_view(request):
-    return render(request, 'dashboard.html', {'pagetitle':'Dashboard'})
+    extra_user_data = UserData.objects.get(user=request.user)
+    return render(request, 'dashboard.html', {'pagetitle':'Dashboard', 'extra_user_data':extra_user_data})
+
+
+@login_required
+def edit_profile_view(request):
+    extra_user_data = get_object_or_404(UserData, user=request.user)
+    if request.method == 'POST':
+        user_form = UserUpdateForm(request.POST, instance=request.user)
+        password_form = PasswordChangeForm(request.user, request.POST)
+        if 'update_profile' in request.POST and user_form.is_valid():
+            user_form.save()
+            data = user_form.cleaned_data
+            extra_user_data.address = data['address']
+            extra_user_data.phone = data['phone']
+            extra_user_data.save()
+            request.user = User.objects.get(id=request.user.id)
+            messages.success(request, 'Perfil actualizado exitosamente.')
+            return redirect('users:dashboard')
+        elif 'change_password' in request.POST and password_form.is_valid():
+            password_form.save()
+            update_session_auth_hash(request, password_form.user)  # Important!
+            messages.success(request, 'Contraseña actualizada exitosamente.')
+            return redirect('users:dashboard')
+    else:
+        user_form = UserUpdateForm(instance=request.user, initial={
+            'address': extra_user_data.address,
+            'phone': extra_user_data.phone,
+        })
+        password_form = PasswordChangeForm(request.user)
+
+    return render(request, 'profile.html', {
+        'pagetitle':'Perfil', 
+        'user_form': user_form, 
+        'password_form': password_form, 
+        'extra_user_data': extra_user_data
+    })
