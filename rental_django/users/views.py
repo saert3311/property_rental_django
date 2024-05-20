@@ -5,11 +5,11 @@ from django.contrib import messages
 from .models import Comuna, UserData
 from django.contrib.auth.models import User
 from django.views.generic import TemplateView
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import AuthenticationForm
 from django.shortcuts import render, redirect
 from .forms import RegisterForm
-
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 #funcion para devolver las columnas en funcion de la region seleccionada
@@ -27,9 +27,17 @@ def get_comunas(request):
 class IndexView(TemplateView):
     template_name = 'index.html'
 
+    def get_context_data(self):
+        context = super().get_context_data()
+        context["pagetitle"] = 'Inicio'
+        return context
+    
+
 index_view = IndexView.as_view()
 
 def login_view(request):
+    if request.user.is_authenticated:
+        return redirect('users:index')
     if request.method == 'POST':
         username_or_email = request.POST['username']
         password = request.POST['password']
@@ -41,13 +49,15 @@ def login_view(request):
         if user is not None:
             login(request, user)
             messages.success(request, f'Bienvenido {user.first_name}!')
-            return redirect('property:index')
+            return redirect('users:index')
         else:
             messages.error(request, 'Usuario o contraseña incorrectos')
     form = AuthenticationForm()
     return render(request, 'login.html', {'form': form, 'pagetitle': 'Iniciar sesión'})     
 
 def register_view(request):
+    if request.user.is_authenticated:
+        return redirect('users:index')
     if request.method == 'POST':
         form = RegisterForm(request.POST)
         try:
@@ -56,10 +66,19 @@ def register_view(request):
                 user = User.objects.create_user(username=data['username'], email=data['email'], password=data['password'], first_name=data['f_name'], last_name=data['l_name'])
                 UserData.objects.create(user=user, rut=data['rut'], address=data['address'], phone=data['phone'])
                 messages.success(request, 'Usuario creado exitosamente.')
-                return redirect('users:index')
+                return redirect('users:login')
         except ValidationError as e:
             for message in e.messages:
                 messages.error(request, message)
             return redirect('users:register')
     form = RegisterForm()
     return render(request, 'register.html', {'form':form, 'pagetitle':'Registro'})
+
+def logout_view(request):
+    logout(request)
+    messages.success(request, 'Sesión cerrada exitosamente.')
+    return redirect('users:index')
+
+@login_required
+def dashboard_view(request):
+    return render(request, 'dashboard.html', {'pagetitle':'Dashboard'})
