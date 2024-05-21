@@ -35,3 +35,4 @@ $ python manage.py runserver
 $ python manage.py test
 
 ```
+* Vistas de login, logout, Edicion de perfil, y actulizacion de contraseñas  (Hito 3)
