@@ -72,20 +72,20 @@
 							<!-- Current Password -->
 							<div class="form-group">
 								<label for="current-password">Contraseña Actual</label>
-								<input type="password" class="form-control" id="current-password">
+								{% render_field password_form.old_password class+="form-control" id="current-password" %}
 							</div>
 							<!-- New Password -->
 							<div class="form-group">
 								<label for="new-password">Nueva Contraseña</label>
-								<input type="password" class="form-control" id="new-password">
+								{% render_field password_form.new_password1 class+="form-control" id="new-password" %}
 							</div>
 							<!-- Confirm New Password -->
 							<div class="form-group">
-								<label for="confirm-password">Confirmar Nueva Contraseña</label>
-								<input type="password" class="form-control" id="confirm-password">
+								<label for="repeat-new-password">Confirmar Nueva Contraseña</label>
+								{% render_field password_form.new_password2 class+="form-control" id="repeat-new-password" %}
 							</div>
 							<!-- Submit Button -->
-							<button class="btn btn-transparent">Cambiar Contraseña</button>
+							<button class="btn btn-transparent" name="change_password">Cambiar Contraseña</button>
 						</form>
 					</div>
 					</div>

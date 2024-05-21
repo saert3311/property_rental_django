@@ -88,9 +88,9 @@ def dashboard_view(request):
 @login_required
 def edit_profile_view(request):
     extra_user_data = get_object_or_404(UserData, user=request.user)
+    password_form = PasswordChangeForm(request.user, request.POST or None)
     if request.method == 'POST':
         user_form = UserUpdateForm(request.POST, instance=request.user)
-        password_form = PasswordChangeForm(request.user, request.POST)
         if 'update_profile' in request.POST and user_form.is_valid():
             user_form.save()
             data = user_form.cleaned_data
@@ -100,17 +100,21 @@ def edit_profile_view(request):
             request.user = User.objects.get(id=request.user.id)
             messages.success(request, 'Perfil actualizado exitosamente.')
             return redirect('users:dashboard')
-        elif 'change_password' in request.POST and password_form.is_valid():
-            password_form.save()
-            update_session_auth_hash(request, password_form.user)  # Important!
-            messages.success(request, 'Contraseña actualizada exitosamente.')
-            return redirect('users:dashboard')
-    else:
-        user_form = UserUpdateForm(instance=request.user, initial={
-            'address': extra_user_data.address,
-            'phone': extra_user_data.phone,
-        })
-        password_form = PasswordChangeForm(request.user)
+        elif 'change_password' in request.POST:
+            if password_form.is_valid():
+                password_form.save()
+                update_session_auth_hash(request, password_form.user) 
+                messages.success(request, 'Contraseña actualizada exitosamente.')
+                return redirect('users:dashboard')
+            else:
+                #add form errors to messages
+                for field, errors in password_form.errors.items():
+                    for error in errors:
+                        messages.error(request, f'{field}: {error}')
+    user_form = UserUpdateForm(instance=request.user, initial={
+        'address': extra_user_data.address,
+        'phone': extra_user_data.phone,
+    })
 
     return render(request, 'profile.html', {
         'pagetitle':'Perfil', 
