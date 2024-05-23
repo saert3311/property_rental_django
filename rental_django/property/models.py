@@ -25,6 +25,10 @@ class Property(models.Model):
     landlord = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Arrendador')
     picture = models.ImageField(upload_to='properties', verbose_name='Imagen', null=True, blank=True)
 
+    @property
+    def region(self):
+        return self.comuna.cod_provincia.cod_region.nombre
+
     def __str__(self):
         return f'{self.get_ptype_display()} {self.name}'
     
