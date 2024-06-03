@@ -71,59 +71,8 @@
     $(this).parent('.video').replaceWith(video);
   });
 
-  // niceSelect
 
-  $('select:not(.ignore)').niceSelect();
 
-  // blog post-slider
-  $('.post-slider').slick({
-    dots: false,
-    arrows: false,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    adaptiveHeight: true,
-    autoplay: true,
-    fade: true
-  });
-
-  // Client Slider 
-  $('.category-slider').slick({
-    dots: false,
-    slidesToShow: 5,
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 1500,
-    nextArrow: '<i class="fa fa-chevron-right arrow-right"></i>',
-    prevArrow: '<i class="fa fa-chevron-left arrow-left"></i>',
-    responsive: [{
-      breakpoint: 1024,
-      settings: {
-        slidesToShow: 4,
-        slidesToScroll: 1,
-        infinite: true,
-        dots: false
-      }
-    },
-    {
-      breakpoint: 600,
-      settings: {
-        slidesToShow: 3,
-        slidesToScroll: 1
-      }
-    },
-    {
-      breakpoint: 480,
-      settings: {
-        slidesToShow: 3,
-        slidesToScroll: 1,
-        arrows: false
-      }
-    }
-    // You can unslick at a given breakpoint now by adding:
-    // settings: "unslick"
-    // instead of a settings object
-    ]
-  });
 
   // trending-ads-slide 
 

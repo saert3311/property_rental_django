@@ -7,7 +7,7 @@
 {% block content %}
 <section class="advt-post bg-gray py-5">
     <div class="container">
-      <form method="POST">
+      <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         <fieldset class="border border-gary px-3 px-md-4 py-4 mb-5">
           <div class="row">

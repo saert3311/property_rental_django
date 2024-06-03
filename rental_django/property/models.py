@@ -1,3 +1,4 @@
+from rental_django.settings import MEDIA_URL, STATIC_URL
 from django.db import models
 from users.models import Comuna
 from django.contrib.auth.models import User
@@ -22,12 +23,19 @@ class Property(models.Model):
     comuna = models.ForeignKey(Comuna, on_delete=models.DO_NOTHING, verbose_name='Comuna')
     ptype = models.SmallIntegerField(choices=TYPE_CHOICES, verbose_name='Tipo', default=0)
     price = models.IntegerField(verbose_name='Precio')
-    landlord = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Arrendador')
+    landlord = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Arrendador', null=True, blank=True)
     picture = models.ImageField(upload_to='properties', verbose_name='Imagen', null=True, blank=True)
+    created = models.DateTimeField(auto_now_add=True)
 
     @property
     def region(self):
         return self.comuna.cod_provincia.cod_region.nombre
+    
+    @property
+    def get_picture(self):
+        if self.picture:
+            return f'{MEDIA_URL}{self.picture}'
+        return f'{STATIC_URL}images/property-placeholder.jpg'
 
     def __str__(self):
         return f'{self.get_ptype_display()} {self.name}'
@@ -37,6 +45,7 @@ class Request(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     date = models.DateTimeField(auto_now_add=True)
     message = models.TextField()
+    created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return f'{self.user} - {self.origin_property.name}'

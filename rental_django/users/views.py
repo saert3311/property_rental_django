@@ -1,10 +1,12 @@
+from webbrowser import get
 from django.shortcuts import get_object_or_404
 from django.forms import ValidationError
 from django.http import JsonResponse
 from django.contrib import messages
 from .models import Comuna, UserData
+from property.models import Property
 from django.contrib.auth.models import User
-from django.views.generic import TemplateView
+from django.views.generic import ListView
 from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
 from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm
 from django.shortcuts import render, redirect
@@ -24,8 +26,14 @@ def get_comunas(request):
         data['error'] =str(e)
     return JsonResponse(data, safe=False)
 
-class IndexView(TemplateView):
+class IndexView(ListView):
     template_name = 'index.html'
+    context_object_name = 'properties'
+
+    def get_queryset(self):
+        if self.request.user.is_authenticated:
+            return Property.objects.all().order_by('-created').exclude(landlord=self.request.user)
+        return Property.objects.all().order_by('-created')
 
     def get_context_data(self):
         context = super().get_context_data()
@@ -82,7 +90,9 @@ def logout_view(request):
 @login_required
 def dashboard_view(request):
     extra_user_data = UserData.objects.get(user=request.user)
-    return render(request, 'dashboard.html', {'pagetitle':'Dashboard', 'extra_user_data':extra_user_data})
+    user_posts = Property.objects.filter(landlord=request.user)
+    users_posts_qty = user_posts.count()
+    return render(request, 'dashboard.html', {'pagetitle':'Dashboard', 'extra_user_data':extra_user_data, 'users_posts':user_posts, 'users_posts_qty':users_posts_qty})
 
 
 @login_required

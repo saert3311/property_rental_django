@@ -1,5 +1,6 @@
 {% extends 'layouts/base.html' %}
 {% load static %}
+{% load currency_filters %}
 {% block title %}{{pagetitle}}{% endblock %}
 {% block content %}
 <section class="hero-area bg-1 text-center overly">
@@ -62,30 +63,32 @@
 			</div>
 		</div>
 		<div class="row">
+			{% for propertie in properties %}
 			<div class="col-sm-12 col-lg-4">
 				<div class="product-item bg-light">
 					<div class="card">
 						<div class="thumb-content">
-							<div class="price">$200</div>
+							<div class="price">{{ propertie.price|moneda }}</div>
 							<a href="single.html">
-								<img class="card-img-top img-fluid" src="{% static 'images/products/products-1.jpg' %}" alt="Card image cap">
+								<img class="card-img-top img-fluid" src="{{ propertie.get_picture }}" alt="Card image cap">
 							</a>
 						</div>
 						<div class="card-body">
-							<h4 class="card-title"><a href="single.html">11inch Macbook Air</a></h4>
+							<h4 class="card-title"><a href="single.html">{{ propertie.name }}</a></h4>
 							<ul class="list-inline product-meta">
 								<li class="list-inline-item">
-									<a href="single.html"><i class="fa fa-folder-open-o"></i>Electronics</a>
+									<a href="single.html"><i class="fa fa-folder-open-o"></i>{{ propertie.get_ptype_display }}</a>
 								</li>
 								<li class="list-inline-item">
-									<a href="category.html"><i class="fa fa-calendar"></i>26th December</a>
+									<a href="category.html"><i class="fa fa-calendar"></i>{{ propertie.created|date:"j \d\e N Y" }}</a>
 								</li>
 							</ul>
-							<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo, aliquam!</p>
+							<p class="card-text">{{ propertie.description }}</p>
 						</div>
 					</div>
 				</div>
 			</div>
+			{% endfor %}
 		</div>
 	</div>
 </section>

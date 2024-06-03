@@ -8,10 +8,11 @@ from django.shortcuts import redirect
 @login_required
 def add_property(request):
     if request.method == 'POST':
-        form = PropertyForm(request.POST)
+        form = PropertyForm(request.POST, request.FILES)
         if form.is_valid():
             obj = form.save(commit=False)
             obj.landlord = request.user
+            print(obj.picture)
             obj.save()
             messages.success(request, 'Propiedad publicada exitosamente.')
             return redirect('users:dashboard')
@@ -23,3 +24,7 @@ def add_property(request):
 
     form = PropertyForm()
     return render(request, 'property/add.html', {'form': form, 'pagetitle': 'Agregar propiedad'})
+
+@login_required
+def update_property(request):
+    pass
