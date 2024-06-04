@@ -1,7 +1,8 @@
 from django.test import TestCase
 from property.models import Property, Request, Contract
-from users.models import Comuna
+from users.models import Comuna, Regiones
 from django.contrib.auth.models import User
+from django.db.models import Count
 # Create your tests here.
 
 # setuptestdata
@@ -120,3 +121,62 @@ class PropertyTestCase(TestCase):
 
         contract.delete()
         self.assertEqual(Contract.objects.count(), 0)
+
+
+class QueryTestCase(TestCase):
+    fixtures = ['users/fixtures/regiones.json', 
+                'users/fixtures/provincias.json',
+                'users/fixtures/comunas.json',
+                'users/fixtures/users.json',
+                'property/fixtures/property.json',]
+
+    def test_property_query(self):
+        properties = Property.objects.all()
+        self.assertEqual(properties.count(), 20)
+    
+    def test_user_query(self):
+        users = User.objects.all()
+        self.assertEqual(users.count(), 5)
+
+    def test_comuna_query(self):
+        comunas = Comuna.objects.all()
+        self.assertEqual(comunas.count(), 346)
+
+    def test_property_filter(self):
+        properties = Property.objects.all()
+        self.assertEqual(properties.count(), 20)
+
+    def test_property_comuna(self):
+        distinct_comunas = Property.objects.values_list('comuna', flat=True).distinct()
+
+        #clear file before writing
+        with open('propiedades_comunas.txt', 'w') as f:
+            f.write('')
+
+        for comuna in distinct_comunas:
+            properties = Property.objects.filter(comuna__pk=comuna)
+            #write results to file
+            with open('propiedades_comunas.txt', 'a') as f:
+                nombre_comuna = Comuna.objects.get(pk=comuna).nombre
+                f.write(f'Propiedades en la comuna de {nombre_comuna}:\n')
+                #iterate with enumerate
+                for i, prop in enumerate(properties, 1):
+                    f.write(f'{i}. {prop.name} {prop.description}\n')
+        self.assertTrue(True)
+
+    def test_property_region(self):
+        #get all distinct regiones from properties
+        distinct_regiones = Property.objects.values_list('comuna__cod_provincia__cod_region__id', flat=True).distinct()
+
+        with open('propiedades_regiones.txt', 'w') as f:
+            f.write('')
+
+        for region in distinct_regiones:
+            properties = Property.objects.filter(comuna__cod_provincia__cod_region__id=region)
+            with open('propiedades_regiones.txt', 'a') as f:
+                nombre_region = Regiones.objects.get(pk=region).nombre
+                f.write(f'Propiedades en la región de {nombre_region}:\n')
+                for i, prop in enumerate(properties, 1):
+                    f.write(f'{i}. {prop.name} {prop.description}\n')
+                    
+        self.assertTrue(True)

@@ -28,8 +28,10 @@ $ python manage.py runserver
 
 * Creacion de proyecto y configuracion de ambiente de desarrollo, con Modelos Inciales, de comunas y regiones (Hito 1)
 
+* Creacion de fixtures para probar querys de Propiedades basado en comuna y regiones, Aprovechamos los mismos tests para realizar las pruebas de las consultas. (Hito 2)
+
 ```bash
-#Corremos los tests iniciales para comprobar el estado de los modelos
+#Corremos los tests iniciales para comprobar el estado de los modelos y pruebas de querys
 $ python manage.py test
 
 ```
