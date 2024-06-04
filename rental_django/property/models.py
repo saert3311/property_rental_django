@@ -36,13 +36,20 @@ class Property(models.Model):
         if self.picture:
             return f'{MEDIA_URL}{self.picture}'
         return f'{STATIC_URL}images/property-placeholder.jpg'
+    
+    @property
+    def has_contract(self):
+        return Contract.objects.filter(origin_request__origin_property=self).exists()
+    
+    def user_has_request(self, user):
+        return Request.objects.filter(user=user, origin_property=self).exists()
 
     def __str__(self):
         return f'{self.get_ptype_display()} {self.name}'
     
 class Request(models.Model):
-    origin_property = models.ForeignKey(Property, on_delete=models.CASCADE)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    origin_property = models.ForeignKey(Property, on_delete=models.CASCADE, null=True, blank=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     date = models.DateTimeField(auto_now_add=True)
     message = models.TextField()
     created = models.DateTimeField(auto_now_add=True)
@@ -51,7 +58,7 @@ class Request(models.Model):
         return f'{self.user} - {self.origin_property.name}'
 
 class Contract(models.Model):
-    origin_request = models.ForeignKey(Request, on_delete=models.CASCADE)
+    origin_request = models.ForeignKey(Request, on_delete=models.CASCADE, null=True, blank=True)
     date = models.DateTimeField(auto_now_add=True)
     start_date = models.DateField()
     end_date = models.DateField()

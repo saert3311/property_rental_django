@@ -14,6 +14,16 @@ class PropertyForm(ModelForm):
             'comuna': Select()
         }
 
+class UpdatePropertyForm(ModelForm):
+    comuna = forms.ModelChoiceField(queryset=Comuna.objects.all(), widget=forms.Select)
+
+    class Meta:
+        model = Property
+        exclude = ['landlord', 'created']
+        widgets = {
+            'comuna': Select()
+        }
+
 class RequestForm(ModelForm):
     class Meta:
         model = Request
