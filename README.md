@@ -36,3 +36,5 @@ $ python manage.py test
 
 ```
 * Vistas de login, logout, Edicion de perfil, y actulizacion de contraseñas  (Hito 3)
+
+* Vistas para listar propiedades, crear contactos, y revisar informacion de contactos propios  (Hito 4)
