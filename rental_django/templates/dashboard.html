@@ -1,0 +1,255 @@
+{% extends 'layouts/base.html' %}
+{% load widget_tweaks %}
+{% block title %}{{pagetitle}}{% endblock %}
+{% block content %}
+<section class="dashboard section">
+    <!-- Container Start -->
+    <div class="container">
+      <!-- Row Start -->
+      <div class="row">
+        <div class="col-lg-4">
+          <div class="sidebar">
+            <!-- User Widget -->
+            <div class="widget user-dashboard-profile">
+              <!-- User Name -->
+              <h5 class="text-center">{{ request.user.get_full_name }}</h5>
+              <p class="text-center font-weight-bold">{{ extra_user_data.rut }}</p>
+              <p class="text-center"><span class="font-weight-bold">Dirección:</span> {{ extra_user_data.address }}</p>
+              <p class="text-center"><span class="font-weight-bold">Telefono:</span> {{ extra_user_data.phone }}</p>
+              <p>Registrado desde el {{ request.user.date_joined|date:"j \d\e F  Y" }}</p>
+              <a href="{% url 'users:edit_profile' %}" class="btn btn-main-sm">Editar perfil</a>
+            </div>
+            <!-- Dashboard Links -->
+            <div class="widget user-dashboard-menu">
+              <ul>
+                <li class="active"><a href="dashboard-my-ads.html"><i class="fa fa-user"></i> Mis publicaciones</a></li>
+                <li><a href="dashboard-favourite-ads.html"><i class="fa fa-bookmark-o"></i> Favourite Ads
+                    <span>5</span></a></li>
+                <li><a href="dashboard-archived-ads.html"><i class="fa fa-file-archive-o"></i>Archived Ads
+                    <span>12</span></a></li>
+                <li><a href="dashboard-pending-ads.html"><i class="fa fa-bolt"></i> Pending Approval<span>23</span></a>
+                </li>
+                <li><a href="{% url 'users:logout' %}"><i class="fa fa-cog"></i> Salir</a></li>
+              </ul>
+            </div>
+            
+          </div>
+        </div>
+        <div class="col-lg-8">
+          <!-- Recently Favorited -->
+          <div class="widget dashboard-container my-adslist">
+            <h3 class="widget-header">Mis Publicaciones</h3>
+            <table class="table table-responsive product-dashboard-table">
+              <thead>
+                <tr>
+                  <th>Image</th>
+                  <th>Product Title</th>
+                  <th class="text-center">Category</th>
+                  <th class="text-center">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="product-thumb">
+                    <img width="80px" height="auto" src="images/products/products-1.jpg" alt="image description"></td>
+                  <td class="product-details">
+                    <h3 class="title">Macbook Pro 15inch</h3>
+                    <span class="add-id"><strong>Ad ID:</strong> ng3D5hAMHPajQrM</span>
+                    <span><strong>Posted on: </strong><time>Jun 27, 2017</time> </span>
+                    <span class="status active"><strong>Status</strong>Active</span>
+                    <span class="location"><strong>Location</strong>Dhaka,Bangladesh</span>
+                  </td>
+                  <td class="product-category"><span class="categories">Laptops</span></td>
+                  <td class="action" data-title="Action">
+                    <div class="">
+                      <ul class="list-inline justify-content-center">
+                        <li class="list-inline-item">
+                          <a data-toggle="tooltip" data-placement="top" title="view" class="view" href="category.html">
+                            <i class="fa fa-eye"></i>
+                          </a>
+                        </li>
+                        <li class="list-inline-item">
+                          <a class="edit" data-toggle="tooltip" data-placement="top" title="Edit" href="dashboard.html">
+                            <i class="fa fa-pencil"></i>
+                          </a>
+                        </li>
+                        <li class="list-inline-item">
+                          <a class="delete" data-toggle="tooltip" data-placement="top" title="Delete" href="dashboard.html">
+                            <i class="fa fa-trash"></i>
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+  
+                  <td class="product-thumb">
+                    <img width="80px" height="auto" src="images/products/products-2.jpg" alt="image description"></td>
+                  <td class="product-details">
+                    <h3 class="title">Study Table Combo</h3>
+                    <span class="add-id"><strong>Ad ID:</strong> ng3D5hAMHPajQrM</span>
+                    <span><strong>Posted on: </strong><time>Feb 12, 2017</time> </span>
+                    <span class="status active"><strong>Status</strong>Active</span>
+                    <span class="location"><strong>Location</strong>USA</span>
+                  </td>
+                  <td class="product-category"><span class="categories">Laptops</span></td>
+                  <td class="action" data-title="Action">
+                    <div class="">
+                      <ul class="list-inline justify-content-center">
+                        <li class="list-inline-item">
+                          <a data-toggle="tooltip" data-placement="top" title="View" class="view" href="category.html">
+                            <i class="fa fa-eye"></i>
+                          </a>
+                        </li>
+                        <li class="list-inline-item">
+                          <a class="edit" data-toggle="tooltip" data-placement="top" title="Edit" href="dashboard.html">
+                            <i class="fa fa-pencil"></i>
+                          </a>
+                        </li>
+                        <li class="list-inline-item">
+                          <a class="delete" data-toggle="tooltip" data-placement="top" title="Delete" href="dashboard.html">
+                            <i class="fa fa-trash"></i>
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="product-thumb">
+                    <img width="80px" height="auto" src="images/products/products-3.jpg" alt="image description"></td>
+                  <td class="product-details">
+                    <h3 class="title">Macbook Pro 15inch</h3>
+                    <span class="add-id"><strong>Ad ID:</strong> ng3D5hAMHPajQrM</span>
+                    <span><strong>Posted on: </strong><time>Jun 27, 2017</time> </span>
+                    <span class="status active"><strong>Status</strong>Active</span>
+                    <span class="location"><strong>Location</strong>Dhaka,Bangladesh</span>
+                  </td>
+                  <td class="product-category"><span class="categories">Laptops</span></td>
+                  <td class="action" data-title="Action">
+                    <div class="">
+                      <ul class="list-inline justify-content-center">
+                        <li class="list-inline-item">
+                          <a data-toggle="tooltip" data-placement="top" title="View" class="view" href="category.html">
+                            <i class="fa fa-eye"></i>
+                          </a>
+                        </li>
+                        <li class="list-inline-item">
+                          <a class="edit" data-toggle="tooltip" data-placement="top" title="Edit" href="dashboard.html">
+                            <i class="fa fa-pencil"></i>
+                          </a>
+                        </li>
+                        <li class="list-inline-item">
+                          <a class="delete" data-toggle="tooltip" data-placement="top" title="Delete" href="dashboard.html">
+                            <i class="fa fa-trash"></i>
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+  
+                  <td class="product-thumb">
+                    <img width="80px" height="auto" src="images/products/products-4.jpg" alt="image description"></td>
+                  <td class="product-details">
+                    <h3 class="title">Macbook Pro 15inch</h3>
+                    <span class="add-id"><strong>Ad ID:</strong> ng3D5hAMHPajQrM</span>
+                    <span><strong>Posted on: </strong><time>Jun 27, 2017</time> </span>
+                    <span class="status active"><strong>Status</strong>Active</span>
+                    <span class="location"><strong>Location</strong>Dhaka,Bangladesh</span>
+                  </td>
+                  <td class="product-category"><span class="categories">Laptops</span></td>
+                  <td class="action" data-title="Action">
+                    <div class="">
+                      <ul class="list-inline justify-content-center">
+                        <li class="list-inline-item">
+                          <a data-toggle="tooltip" data-placement="top" title="View" class="view" href="category.html">
+                            <i class="fa fa-eye"></i>
+                          </a>
+                        </li>
+                        <li class="list-inline-item">
+                          <a class="edit" data-toggle="tooltip" data-placement="top" title="Edit" href="dashboard.html">
+                            <i class="fa fa-pencil"></i>
+                          </a>
+                        </li>
+                        <li class="list-inline-item">
+                          <a class="delete" data-toggle="tooltip" data-placement="top" title="Delete" href="dashboard.html">
+                            <i class="fa fa-trash"></i>
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+  
+                  <td class="product-thumb">
+                    <img width="80px" height="auto" src="images/products/products-1.jpg" alt="image description"></td>
+                  <td class="product-details">
+                    <h3 class="title">Macbook Pro 15inch</h3>
+                    <span class="add-id"><strong>Ad ID:</strong> ng3D5hAMHPajQrM</span>
+                    <span><strong>Posted on: </strong><time>Jun 27, 2017</time> </span>
+                    <span class="status active"><strong>Status</strong>Active</span>
+                    <span class="location"><strong>Location</strong>Dhaka,Bangladesh</span>
+                  </td>
+                  <td class="product-category"><span class="categories">Laptops</span></td>
+                  <td class="action" data-title="Action">
+                    <div class="">
+                      <ul class="list-inline justify-content-center">
+                        <li class="list-inline-item">
+                          <a href="category.html" data-toggle="tooltip" data-placement="top" title="View" class="view">
+                            <i class="fa fa-eye"></i>
+                          </a>
+                        </li>
+                        <li class="list-inline-item">
+                          <a class="edit" data-toggle="tooltip" data-placement="top" title="Edit" href="dashboard.html">
+                            <i class="fa fa-pencil"></i>
+                          </a>
+                        </li>
+                        <li class="list-inline-item">
+                          <a class="delete" data-toggle="tooltip" data-placement="top" title="Delete" href="dashboard.html">
+                            <i class="fa fa-trash"></i>
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+  
+          </div>
+  
+          <!-- Deberia haber paginacion para despues
+          <div class="pagination justify-content-center">
+            <nav aria-label="Page navigation example">
+              <ul class="pagination">
+                <li class="page-item">
+                  <a class="page-link" href="dashboard.html" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                    <span class="sr-only">Previous</span>
+                  </a>
+                </li>
+                <li class="page-item"><a class="page-link" href="dashboard.html">1</a></li>
+                <li class="page-item active"><a class="page-link" href="dashboard.html">2</a></li>
+                <li class="page-item"><a class="page-link" href="dashboard.html">3</a></li>
+                <li class="page-item">
+                  <a class="page-link" href="dashboard.html" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                    <span class="sr-only">Next</span>
+                  </a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+          paginacion -->
+  
+        </div>
+      </div>
+      <!-- Row End -->
+    </div>
+    <!-- Container End -->
+  </section>
+  {% endblock %}

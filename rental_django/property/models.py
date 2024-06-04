@@ -34,7 +34,7 @@ class Request(models.Model):
     message = models.TextField()
 
     def __str__(self):
-        return f'{self.user} - {self.property}'
+        return f'{self.user} - {self.origin_property.name}'
 
 class Contract(models.Model):
     origin_request = models.ForeignKey(Request, on_delete=models.CASCADE)
@@ -45,4 +45,4 @@ class Contract(models.Model):
     status = models.BooleanField(default=False)
 
     def __str__(self):
-        return f'{self.user} - {self.property}'
+        return f'{self.origin_request.user.get_full_name()} - {self.origin_request.origin_property.name}'

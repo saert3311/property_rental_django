@@ -1,0 +1,59 @@
+{% extends 'layouts/base.html' %}
+{% load widget_tweaks %}
+{% block title %}{{pagetitle}}{% endblock %}
+{% block content %}
+<section class="login py-5 border-top-1">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-8 align-item-center">
+          <div class="border border">
+            <h3 class="bg-gray p-4">Registro</h3>
+            <form method="post">
+                {% csrf_token %}
+                <div class="row px-4 my-2">
+                    <div class="col">
+                      {{ form.f_name | add_class:"form-control" | attr:"placeholder:Nombre" | attr:"required" }}
+                    </div>
+                    <div class="col">
+                        {{ form.l_name | add_class:"form-control" | attr:"placeholder:Apellido" | attr:"required" }}
+                    </div>
+                </div>
+                <div class="row px-4 py-2">
+                    <div class="col">
+                        {{ form.username | add_class:"form-control" | attr:"placeholder:Nombre de Usuario" | attr:"required" }}
+                    </div>
+                    <div class="col">
+                        {{ form.email | add_class:"form-control" | attr:"placeholder:Correo" | attr:"required" }}
+                    </div>
+                </div>
+                <div class="row px-4 py-2">
+                    <div class="col">
+                        {{ form.rut | add_class:"form-control" | attr:"placeholder:RUT" | attr:"required" }}
+                    </div>
+                    <div class="col">
+                        {{ form.phone | add_class:"form-control" | attr:"placeholder:Telefono" | attr:"required" }}
+                    </div>
+                </div>
+                <div class="row px-4 py-2">
+                    <div class="col">
+                        {{ form.address | add_class:"form-control" | attr:"placeholder:Dirección" | attr:"required" }}
+                    </div>
+                </div>
+                <div class="row px-4 py-2">
+                    <div class="col">
+                        {{ form.password | add_class:"form-control" | attr:"placeholder:Contraseña" | attr:"required" }}
+                    </div>
+                    <div class="col">
+                        {{ form.password_repeat | add_class:"form-control" | attr:"placeholder:Repetir Contraseña" | attr:"required" }}
+                    </div>
+                </div>
+              <fieldset class="p-4">
+                <button type="submit" class="btn btn-primary font-weight-bold mt-3">Registrate Ahora</button>
+              </fieldset>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}
